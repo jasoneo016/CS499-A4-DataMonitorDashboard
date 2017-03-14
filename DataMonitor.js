@@ -35,7 +35,7 @@ function fetchStockPrice() {
                 console.log("Change: " + items.c);
                 console.log("Change %: " + items.cp + "%");
 
-                client.index({
+                client.create({
                     index: 'snap-stock-price',
                     type: 'stock',
                     id: items.id,
