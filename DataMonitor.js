@@ -4,6 +4,7 @@
 var elasticsearch = require('elasticsearch');
 var express = require('express');
 var request = require('request');
+var uuid = require('uuid/v4');
 
 var client = new elasticsearch.Client({
     host: 'https://search-snapstockprice-4ufubrmszcp72intsktbv3c2gy.us-west-1.es.amazonaws.com/',
@@ -38,7 +39,7 @@ function fetchStockPrice() {
                 client.create({
                     index: 'snap-stock-price',
                     type: 'stock',
-                    id: items.id,
+                    id: uuid(),
                     body: items
                 }, function (error, response) {
                     console.log(response)
@@ -46,7 +47,7 @@ function fetchStockPrice() {
                 })
             }
         })
-    }, 600000);
+    }, 60000);
 }
 
 
